@@ -1,0 +1,53 @@
+{
+  "name": "fit-n-co",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": ">= 7.6.0"
+  },
+  "now": {
+    "dotenv": "variables.env.now"
+  },
+  "scripts": {
+    "prod": "node ./start.js",
+    "watch": "nodemon ./start.js --ignore public/",
+    "start": "concurrently \"npm run watch\" \"npm run assets\" ",
+    "assets": "webpack -w --display-max-modules 0"
+  },
+  "browserslist": "last 3 versions",
+  "dependencies": {
+    "body-parser": "1.18.3",
+    "connect-flash": "0.1.1",
+    "connect-mongo": "2.0.1",
+    "cookie-parser": "1.4.3",
+    "dotenv": "6.0.0",
+    "es6-promisify": "6.0.0",
+    "express": "4.16.3",
+    "express-session": "1.15.6",
+    "express-validator": "5.3.0",
+    "moment": "2.22.2",
+    "mongoose": "5.2.6",
+    "mongoose-mongodb-errors": "0.0.2",
+    "passport": "0.4.0",
+    "passport-local": "1.0.0",
+    "passport-local-mongoose": "5.0.1",
+    "pug": "2.0.0-beta11",
+    "slugs": "0.1.3"
+  },
+  "devDependencies": {
+    "concurrently": "3.4.0",
+    "nodemon": "1.18.3"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaophilip/fit-foods.git"
+  },
+  "author": "Adeyinka Philip A.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aaophilip/fit-foods/issues"
+  },
+  "homepage": "https://github.com/aaophilip/fit-foods#readme",
+  "description": ""
+}
