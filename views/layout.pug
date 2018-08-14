@@ -4,32 +4,63 @@ html
     title= `${title} | ${h.siteName}`
     link(rel='stylesheet', href='/dist/style.css')
     link(rel="shortcut icon" type="image/png" href="")
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css")
+    link(rel="stylesheet" href="stylesheets/font-awesome.min.css")
+    link(rel="stylesheet", href="stylesheets/style.css")
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
-    block header
-      header.top
-        nav.nav
-          .nav__section
-            li
-              a(href="/")
+    .wrapper
+      block header
+        header
+          nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top(style='background-color: #efb')
+            .container#header
+              .navbar-header#navbar-header
+                button(type='button' data-toggle='collapse' data-target='#navbar-menu' aria-controls='navbar-menu' aria-expanded='false' aria-label='toggle navigation').navbar-toggler
+                  span.navbar-toggler-icon
+                a.navbar-brand(href='/')
+                  img(src='' width='30' height='30' alt='Provide Logo').logo
 
-            each item in h.menu
-              li
-                a(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav__link--active' : ''))
+              .navbar-collapse.collapse#navbar-menu
+                .nav.navbar-nav.justify-content-end#menus
+                  each item in h.menu
+                    a.nav-item.nav-link(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'active' : ''))
+                      span #{item.title}
+          .clearfix
 
-                  span #{item.title}
-          
-    block messages
-      if locals.flashes
-        - const categories = Object.keys(locals.flashes)
-        each category in categories
-          each message in flashes[category]
-            .flash(class=`flash--${category}`)
-              p.flash__text!= message
-              button.flash__remove(onClick="this.parentElement.remove()") &times;
-    .content
-      block content
+      block messages
+        if locals.flashes
+          - const categories = Object.keys(locals.flashes)
+          each category in categories
+            each message in flashes[category]
+              .flash(class=`flash--${category}`)
+                p.flash__text!= message
+                button.flash__remove(onClick="this.parentElement.remove()") &times;
 
-    block scripts
+      .container
+        block content
+
+      block footer
+        footer
+          .container#footer-wrap
+            #footer-text
+              span &copy 2018 <a href='/'>Fit&Co</a>
+              span Made with Love by <a href='https://github.com/aaophilip'>RhawkPhil</a>
+
+            #footer-social
+              a.facebook-text-hvr(href='')
+                i.fab.fa-facebook-f(aria-hidden='true')
+              a.youtube-text-hvr(href='')
+                i.fab.fa-youtube(aria-hidden='true')
+              a.pinterest-text-hvr(href='')
+                i.fab.fa-pinterest-p(aria-hidden='true')
+              a.instagram-text-hvr(href='')
+                i.fab.fa-instagram(aria-hidden='true')
+              a.google-text-hvr(href='')
+                i.fab.fa-google(aria-hidden='true')
+
+
+      block scripts
       //- script(src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_KEY}&libraries=places`)
       //- script(src="/dist/App.bundle.js")
+      script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js")
+      script(src="javascripts/all.min.js")
